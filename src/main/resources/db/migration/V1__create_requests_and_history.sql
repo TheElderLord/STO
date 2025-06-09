@@ -27,3 +27,12 @@ CREATE TABLE IF NOT EXISTS users (
     enabled  BOOLEAN NOT NULL DEFAULT true,
     role     VARCHAR(50) NOT NULL DEFAULT 'ROLE_USER'
     );
+
+CREATE TABLE IF NOT EXISTS refresh_tokens (
+                                              token       UUID PRIMARY KEY,
+                                              user_id     UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+                                              expires_at  TIMESTAMP WITH TIME ZONE NOT NULL
+                                                                                                 );
+
+CREATE INDEX IF NOT EXISTS idx_refresh_tokens_user
+    ON refresh_tokens(user_id);

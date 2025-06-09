@@ -31,12 +31,13 @@ public class SecurityConfig {
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
-                        .requestMatchers(HttpMethod.GET,  "/api/requests/**")
+//                        .requestMatchers(HttpMethod.GET,  "/api/requests/**")
+                        .requestMatchers(HttpMethod.GET,  "**")
                                 .permitAll()
 //                        .hasAnyAuthority("ROLE_USER","ROLE_MANAGER","ROLE_ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/api/requests/**")
-                        .hasAnyAuthority("ROLE_MANAGER","ROLE_ADMIN")
-                        .anyRequest().hasAuthority("ROLE_ADMIN")
+//                        .requestMatchers(HttpMethod.POST, "/api/requests/**")
+//                        .hasAnyAuthority("ROLE_MANAGER","ROLE_ADMIN")
+//                        .anyRequest().hasAuthority("ROLE_ADMIN")
                 );
 //                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
